@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+
+/$$    /$$ /$$           /$$                
+| $$   | $$|__/          | $$                
+| $$   | $$ /$$  /$$$$$$ | $$        /$$$$$$ 
+|  $$ / $$/| $$ /$$__  $$| $$       |____  $$
+ /  $$ $$/ | $$| $$  / $$| $$        /$$$$$$$
+  /  $$$/  | $$| $$  | $$| $$       /$$__  $$
+   /  $/   | $$|  $$$$$$/| $$$$$$$$|  $$$$$$$
+    /_/    |__/ /______/ |________/ /_______/
+                                             
+  Author: Violeta Last
+  Created on: February 12, 2024
+  Description: This HTML file contains the code for [JavaScript Array Image to Email Assigner].
+-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/arraystyle.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>Image to Email Assigner</title>
+</head>
+<body>
+    <div class="container">
+    <div id="app">
+
+            <header>
+                <h1>Image to Email Assigner</h1>
+
+                <ol>
+                    <li>Find an image you like</li>
+                    <li>Enter your Email address</li>
+                    <li>Assign your chosen image to your email</li>
+                </ol>
+            </header>
+
+            <main>
+
+                <div id="imageContainer">
+                    <button id="findImageBtn"  type="button">Find Image</button>
+                </div>
+
+                <div id="emailContainer">
+                    <input type="email" id="emailInput" placeholder="Enter email address">
+
+                    <button id="assignImageBtn"  type="button">Assign Image</button>
+                    
+                    <div id="assignedEmails"></div>
+                </div>
+
+                <div id="emailDisplay">
+                    <select id="emailDropdown">
+                        <option>Please select an email address.</option> 
+                    </select>
+                    <button id="btn_add-image" class="button" type="button">Add Current Image</button>
+                </div>
+
+                <div id="imageDisplayer">
+                    <h3>Assigned Images to Selected Email:</h3>
+
+                    <div id="imgDisplay">
+                        <ul>
+                            <li>Select an email first to start seeing images here</li>
+                        </ul>
+                    </div>
+                </div>
+        
+        </main>
+
+    </div>
+      <script src="js\jquery-3.7.1.min.js" defer></script>
+      <script src="script.js" defer></script>
+    </div>
+</body>
+</html>
