@@ -84,7 +84,6 @@ overflow: hidden;
 
 #imageWindow{
     @include border;
-    width: 90%;
     padding:0;
     height: 80%;
     position: relative;
@@ -132,7 +131,7 @@ input, select{
     @include border
 }
 .displayed-image {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     border-radius: 10px;
     margin-top: 10px; /* Add some spacing between images */
