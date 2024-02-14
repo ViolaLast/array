@@ -19,10 +19,10 @@
 body{
 display: flex;
 justify-content: center;
-min-height: 100vh;
-min-width: 100vw;
-margin: 0;
-padding: 0;
+height: 100%;
+width: 100%;
+margin-left: 0;
+margin-right: 0;
 overflow-x: hidden;
 align-items: center;
 letter-spacing: 4px;
@@ -42,11 +42,14 @@ p{
 }
 //================================================================Body================================================================//
 .container{
-    margin: 20px;
     flex-direction: column;
     display: flex;
     align-content: center;
     flex-wrap: wrap;
+}
+
+header{
+    margin: 20px;
 }
 button{
 position: relative;
