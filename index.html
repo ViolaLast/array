@@ -38,44 +38,46 @@
 
             <div id="app">
             <main>
+                <div class="w50">
+                    <div id="imageContainer">
+                        <button id="findImageBtn"  type="button">Find Image</button>
+                        <div id="imageWindow"></div>
+                    </div>
 
-                <div id="imageContainer">
-                    <button id="findImageBtn"  type="button">Find Image</button>
-                    <div id="imageWindow"></div>
-                </div>
+                    <div id="emailContainer">
+                        <h3>Add Email To The List:</h3>
+                        <input type="email" id="emailInput" placeholder="Enter email address">
 
-                <div id="emailContainer">
-                    <h3>Add Email To The List:</h3>
-                    <input type="email" id="emailInput" placeholder="Enter email address">
-
-                    <button id="assignImageBtn"  type="button">Add Email</button>
-                    
-                    <div id="assignedEmails"></div>
-                </div>
-
-                <div id="emailDisplay">
-                    <h3>After Entering your preferred Email Above:</h3>
-                        <p> Please Select your email in the drop down bellow :</p>
-                    <select id="emailDropdown">
-                        <option>Please select your email</option> 
-                    </select>
-
-                        <button id="btnAddImage" class="button" type="button">Add Current Image</button>
-                </div>
-
-                <div id="imageDisplayer">
-                    <h3>Assigned Images to Selected Email:</h3>
-
-                    <div id="imgDisplay">
-                        <p>Select an email first to start seeing images here</p>
-
-                        <ul>
-                            <li></li>
-                        </ul>
-                    
+                        <button id="assignImageBtn"  type="button">Add Email</button>
+                        
+                        <div id="assignedEmails"></div>
                     </div>
                 </div>
-        
+                <div class="w50">
+                    <div id="emailDisplay">
+                        <h3>After Entering your preferred Email Above:</h3>
+                            <p> Please Select your email in the drop down bellow :</p>
+                        <select id="emailDropdown">
+                            <option>Please select your email</option> 
+                        </select>
+
+                            <button id="btnAddImage" class="button" type="button">Add Current Image</button>
+                    </div>
+
+                    <div id="imageDisplayer">
+                        <h3>Assigned Images to Selected Email:</h3>
+                        <p>Select an email first to start seeing images here</p>
+
+                        <ul id="imgDisplay">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+            </div>
         </main>
 
     </div>

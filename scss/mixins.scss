@@ -3,11 +3,8 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    align-content: center;
+    // align-content: center;
     flex-wrap: wrap;
     padding: 20px;
     margin-top:20px ;
-    &:hover {
-        box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
-            }
 }

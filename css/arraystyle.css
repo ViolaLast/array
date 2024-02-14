@@ -4,6 +4,36 @@
   font-weight: normal;
   font-style: normal;
 }
+@media screen and (min-width: 992px) {
+  .w50 {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    float: left;
+    margin: 10px;
+    justify-content: space-between;
+  }
+  main {
+    justify-content: space-between;
+    display: flex !important;
+    justify-content: center;
+  }
+  #imgDisplay {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 20px;
+    display: contents;
+    max-height: 470px;
+    position: relative;
+    box-shadow: none;
+    border: none;
+  }
+}
 * {
   box-sizing: border-box;
   margin-left: 0;
@@ -28,6 +58,10 @@ body {
   color: #f9f9f9;
 }
 
+main {
+  justify-content: space-between;
+}
+
 h1 {
   font-weight: 700;
   text-align: center;
@@ -35,13 +69,9 @@ h1 {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin-top: 20px;
-}
-h1:hover {
-  box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
 }
 
 h3 {
@@ -57,6 +87,7 @@ p {
   display: flex;
   align-content: center;
   flex-wrap: wrap;
+  max-width: 1200px;
 }
 
 header {
@@ -98,7 +129,6 @@ button:hover {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin-top: 20px;
@@ -113,16 +143,12 @@ button:hover {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin-top: 20px;
   padding: 0;
   height: 80%;
   position: relative;
-}
-#imageWindow:hover {
-  box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
 }
 
 .fetched-image {
@@ -137,7 +163,6 @@ button:hover {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin-top: 20px;
@@ -177,13 +202,20 @@ input, select {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin-top: 20px;
+  align-content: none;
 }
 #emailDisplay:hover {
   box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
+}
+#emailDisplayul {
+  list-style: none;
+}
+
+#imgDisplay {
+  list-style: none;
 }
 
 #imageDisplayer {
@@ -191,7 +223,6 @@ input, select {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin-top: 20px;
@@ -202,9 +233,9 @@ input, select {
 
 .displayed-image {
   max-width: 100%;
-  height: auto;
+  max-height: 400px;
   border-radius: 10px;
-  margin-top: 10px; /* Add some spacing between images */
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=arraystyle.css.map */

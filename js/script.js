@@ -34,19 +34,23 @@ $(document).ready(function () {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
+// Function to assign email to dropdown and display image
+function assignImageToEmail(email) {
+    var $imgDisplay = $('#imgDisplay');
+    var $imageWindow = $('#imageWindow');
 
-    // Function to assign email to dropdown and display image
-    function assignImageToEmail(email) {
-        var $imgDisplay = $('#imgDisplay');
-        var currentImage = currentImageUrl; // Use the stored URL
-        if (currentImage) {
-            var $image = $('<img>').attr('src', currentImage).addClass('displayed-image');
-            $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
-            assignedImages.push({ email: email, imageUrl: currentImage });
-        } else {
-            alert('No image available. Please find and assign an image first.');
-        }
+    // Get the current image URL from imageWindow
+    var currentImageUrl = $imageWindow.find('img').attr('src');
+
+    if (currentImageUrl) {
+        var $image = $('<img>').attr('src', currentImageUrl).addClass('displayed-image');
+        $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
+        assignedImages.push({ email: email, imageUrl: currentImageUrl });
+    } else {
+        alert('No image available. Please find and assign an image first.');
     }
+}
+
 
     // Function to add email to dropdown
     function addToDropdown(email) {

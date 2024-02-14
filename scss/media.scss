@@ -1,0 +1,25 @@
+                                                  @media screen and (min-width: 992px) {
+.w50{
+width:45%;
+display:flex;
+flex-wrap: wrap;
+flex-direction: column;
+float:left;
+margin: 10px;
+justify-content: space-between;
+}
+
+main{
+    justify-content: space-between;
+    display: flex !important;
+    justify-content: center;
+}
+#imgDisplay{
+    @include border;
+    display: contents;
+    max-height: 470px;
+    position: relative;
+    box-shadow: none;
+    border: none;
+}
+                                                  }
