@@ -2,13 +2,49 @@ $(document).ready(function () {
     var assignedImages = [];
     var currentImageUrl; // Variable to store the current image URL
 
-    // Replace 'your_api_key' with your actual Unsplash API key
+    // Unsplash API key
     const apiKey = 'XWChz20hpoJGflwDD5eaBDIyvG_tl1ZxU42R9uICSvs';
     const apiURL = `https://api.unsplash.com/photos/random?client_id=XWChz20hpoJGflwDD5eaBDIyvG_tl1ZxU42R9uICSvs`;
+
+    // Function to fetch data from the Unsplash API
+    function fetchData(url) {
+        return fetch(url)
+            .then(response => response.json())
+            .catch(error => console.error('Could not fetch data:', error));
+    }
+
+    // Function to generate and display an image
+    function generateImage(url, altText) {
+        var $imageWindow = $('#imageWindow');
+        $imageWindow.empty();
+
+        var $image = $('<img>').attr('src', url).addClass('fetched-image');
+        $image.appendTo($imageWindow);
+    }
+
+    // Function to fetch and display an image
+    function fetchAndDisplayImage() {
+        fetchData(apiURL)
+            .then(data => {
+                // Check if 'urls' and 'small' properties exist in the data
+                if (data.urls && data.urls.small) {
+                    currentImageUrl = data.urls.small;
+                    generateImage(currentImageUrl, data.alt_description);
+                } else {
+                    console.error('Invalid image data received:', data);
+                }
+            });
+    }
 
     // Event listener for finding and displaying a new image
     $('#findImageBtn').click(function () {
         fetchAndDisplayImage();
+    });
+
+
+    // Event listener for finding and displaying a new image
+    $('#findImageBtn').click(function () {
+        fetchAndDisplayImage(apiURL);
     });
 
     // Event listener for adding email to the dropdown
@@ -52,9 +88,6 @@ $(document).ready(function () {
             alert('No image available. Please find and assign an image first.');
             return;
         }
-
-        // Fetch and display a new image in imageWindow
-        fetchAndDisplayImage(apiURL);
     }
 
     // Function to add email to dropdown
@@ -66,31 +99,9 @@ $(document).ready(function () {
         $('#emailInput').val('');
     }
 
-    // Function to fetch and display an image
-    function fetchAndDisplayImage(apiURL) {
-        var image = new Image();
-        image.onload = function () {
-            displayImageInWindow(image.src);
-        };
-        image.onerror = function () {
-            console.error('Error loading image.');
-        };
-    
-        // Fetch image data from the Unsplash API
-        fetch(apiURL)
-            .then(response => response.json())
-            .then(data => {
-                // Check if 'urls' and 'small' properties exist in the data
-                if (data.urls && data.urls.small) {
-                    image.src = data.urls.small;
-                    image.alt = data.alt_description;
-                } else {
-                    console.error('Invalid image data received:', data);
-                }
-            })
-            .catch(error => console.error('Could not fetch image data:', error));
-    }
-    
+    // Fetch and display a new image on the load of the page
+    fetchAndDisplayImage(apiURL);
+
     // Function to display an image in the imageWindow
     function displayImageInWindow(imageUrl) {
         var $imageWindow = $('#imageWindow');
@@ -98,7 +109,4 @@ $(document).ready(function () {
         var $image = $('<img>').attr('src', imageUrl).addClass('fetched-image');
         $image.appendTo($imageWindow);
     }
-
-    // Fetch and display a new image on the load of the page
-    fetchAndDisplayImage(apiURL);
 });
