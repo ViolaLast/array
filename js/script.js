@@ -90,14 +90,20 @@ $(document).ready(function () {
         }
     }
 
-    // Function to add email to dropdown
-    function addToDropdown(email) {
-        var $emailDropdown = $('#emailDropdown');
+   // Function to add email to dropdown
+function addToDropdown(email) {
+    var $emailDropdown = $('#emailDropdown');
+
+    // Check if the email is already in the dropdown
+    if ($emailDropdown.find('option[value="' + email + '"]').length === 0) {
         var $option = $('<option>').text(email).val(email);
         $emailDropdown.append($option);
         $emailDropdown.val(email);
         $('#emailInput').val('');
+    } else {
+        alert('Email address already selected.');
     }
+}
 
     // Fetch and display a new image on the load of the page
     fetchAndDisplayImage(apiURL);

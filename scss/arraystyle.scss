@@ -27,8 +27,13 @@ margin-right: 0;
 overflow-x: hidden;
 align-items: center;
 letter-spacing: 4px;
-background-color: #000;
 color: #f9f9f9;
+background-image: url('../wood-1759566_1280.webp');
+background-repeat: no-repeat;
+background-size: cover;
+background-size: 100% 100%;
+background-attachment: fixed;
+z-index: 10;
 
 }
 main{
@@ -47,14 +52,6 @@ p{
     text-align: center;
 }
 //================================================================Body================================================================//
-.backgroundImage{
-    background-image: url('..\wood-1759566_1280.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    z-index: 10;
-}
 
 .container{
     flex-direction: column;

@@ -50,8 +50,13 @@ body {
   overflow-x: hidden;
   align-items: center;
   letter-spacing: 4px;
-  background-color: #000;
   color: #f9f9f9;
+  background-image: url("../wood-1759566_1280.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  z-index: 10;
 }
 
 main {
@@ -68,6 +73,7 @@ h1 {
   padding: 20px;
   margin-top: 40px;
   box-shadow: 0 -0.5em 1em 0 rgb(118, 118, 118), 0 0.5em 1em 0 #3a3a3a;
+  background-color: #000;
 }
 
 h3 {
@@ -76,15 +82,6 @@ h3 {
 
 p {
   text-align: center;
-}
-
-.backgroundImage {
-  background-image: url("..wood-1759566_1280.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  z-index: 10;
 }
 
 .container {
@@ -118,6 +115,7 @@ button {
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 -0.5em 1em 0 rgb(118, 118, 118), 0 0.5em 1em 0 #3a3a3a;
+  background-color: #000;
 }
 button:hover {
   color: #fff;
@@ -141,6 +139,7 @@ button:hover {
   margin-top: 40px;
   height: 400px;
   box-shadow: 0 -0.5em 1em 0 rgb(118, 118, 118), 0 0.5em 1em 0 #3a3a3a;
+  background-color: #000;
 }
 #imageContainer:hover {
   box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
@@ -174,6 +173,7 @@ button:hover {
   padding: 20px;
   margin-top: 40px;
   box-shadow: 0 -0.5em 1em 0 rgb(118, 118, 118), 0 0.5em 1em 0 #3a3a3a;
+  background-color: #000;
 }
 #emailContainer:hover {
   box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
@@ -214,6 +214,7 @@ input, select {
   margin-top: 40px;
   align-content: none;
   box-shadow: 0 -0.5em 1em 0 rgb(118, 118, 118), 0 0.5em 1em 0 #3a3a3a;
+  background-color: #000;
 }
 #emailDisplay:hover {
   box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
@@ -237,6 +238,7 @@ input, select {
   padding: 20px;
   margin-top: 40px;
   box-shadow: 0 -0.5em 1em 0 rgb(118, 118, 118), 0 0.5em 1em 0 #3a3a3a;
+  background-color: #000;
 }
 #imageDisplayer:hover {
   box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
