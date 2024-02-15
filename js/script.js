@@ -2,6 +2,10 @@ $(document).ready(function () {
     var assignedImages = [];
     var currentImageUrl; // Variable to store the current image URL
 
+    // Replace 'your_api_key' with your actual Unsplash API key
+    const apiKey = 'XWChz20hpoJGflwDD5eaBDIyvG_tl1ZxU42R9uICSvs';
+    const apiURL = `https://api.unsplash.com/photos/random?client_id=XWChz20hpoJGflwDD5eaBDIyvG_tl1ZxU42R9uICSvs`;
+
     // Event listener for finding and displaying a new image
     $('#findImageBtn').click(function () {
         fetchAndDisplayImage();
@@ -22,8 +26,6 @@ $(document).ready(function () {
         var selectedEmail = $('#emailDropdown').val();
         if (selectedEmail !== 'Please select your email') {
             assignImageToEmail(selectedEmail);
-            // Fetch and display a new image in imageWindow
-            fetchAndDisplayImage();
         } else {
             alert('Please select an email first.');
         }
@@ -31,26 +33,29 @@ $(document).ready(function () {
 
     // Function to validate email
     function validateEmail(email) {
-        var re = /\S+@\S+\.\S+/;
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
-// Function to assign email to dropdown and display image
-function assignImageToEmail(email) {
-    var $imgDisplay = $('#imgDisplay');
-    var $imageWindow = $('#imageWindow');
 
-    // Get the current image URL from imageWindow
-    var currentImageUrl = $imageWindow.find('img').attr('src');
+    // Function to assign email to dropdown and display image
+    function assignImageToEmail(email) {
+        var $imgDisplay = $('#imgDisplay');
+        var $imageWindow = $('#imageWindow');
 
-    if (currentImageUrl) {
-        var $image = $('<img>').attr('src', currentImageUrl).addClass('displayed-image');
-        $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
-        assignedImages.push({ email: email, imageUrl: currentImageUrl });
-    } else {
-        alert('No image available. Please find and assign an image first.');
+        var currentImageUrl = $imageWindow.find('img').attr('src');
+
+        if (currentImageUrl) {
+            var $image = $('<img>').attr('src', currentImageUrl).addClass('displayed-image');
+            $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
+            assignedImages.push({ email: email, imageUrl: currentImageUrl });
+        } else {
+            alert('No image available. Please find and assign an image first.');
+            return;
+        }
+
+        // Fetch and display a new image in imageWindow
+        fetchAndDisplayImage(apiURL);
     }
-}
-
 
     // Function to add email to dropdown
     function addToDropdown(email) {
@@ -62,18 +67,30 @@ function assignImageToEmail(email) {
     }
 
     // Function to fetch and display an image
-    function fetchAndDisplayImage() {
+    function fetchAndDisplayImage(apiURL) {
         var image = new Image();
         image.onload = function () {
-            currentImageUrl = image.src; // Store the current image URL
-            displayImageInWindow(currentImageUrl);
+            displayImageInWindow(image.src);
         };
         image.onerror = function () {
             console.error('Error loading image.');
         };
-        image.src = 'https://source.unsplash.com/random';
+    
+        // Fetch image data from the Unsplash API
+        fetch(apiURL)
+            .then(response => response.json())
+            .then(data => {
+                // Check if 'urls' and 'small' properties exist in the data
+                if (data.urls && data.urls.small) {
+                    image.src = data.urls.small;
+                    image.alt = data.alt_description;
+                } else {
+                    console.error('Invalid image data received:', data);
+                }
+            })
+            .catch(error => console.error('Could not fetch image data:', error));
     }
-
+    
     // Function to display an image in the imageWindow
     function displayImageInWindow(imageUrl) {
         var $imageWindow = $('#imageWindow');
@@ -83,5 +100,5 @@ function assignImageToEmail(email) {
     }
 
     // Fetch and display a new image on the load of the page
-    fetchAndDisplayImage();
+    fetchAndDisplayImage(apiURL);
 });
