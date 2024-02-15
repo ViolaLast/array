@@ -73,22 +73,45 @@ $(document).ready(function () {
         return re.test(email);
     }
 
-    // Function to assign email to dropdown and display image
-    function assignImageToEmail(email) {
-        var $imgDisplay = $('#imgDisplay');
-        var $imageWindow = $('#imageWindow');
+// Function to assign email to dropdown and display image
+function assignImageToEmail(email) {
+    var $imgDisplay = $('#imgDisplay');
+    var $imageWindow = $('#imageWindow');
 
-        var currentImageUrl = $imageWindow.find('img').attr('src');
+    var currentImageUrl = $imageWindow.find('img').attr('src');
 
+    // Check if the email is already present in the assignedImages list
+    if (!assignedImages.some(item => item.email === email)) {
+        // Check if the image with the same URL is already assigned to the email
+        if (!assignedImages.some(item => item.email === email && item.imageUrl === currentImageUrl)) {
+            if (currentImageUrl) {
+                var $image = $('<img>').attr('src', currentImageUrl).addClass('displayed-image');
+                $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
+                assignedImages.push({ email: email, imageUrl: currentImageUrl });
+            } else {
+                alert('No image available. Please find and assign an image first.');
+            }
+        } else {
+            alert('Image already assigned to this email.');
+        }
+    } else {
+        // If it's the same email, just add the image without displaying the email text
         if (currentImageUrl) {
-            var $image = $('<img>').attr('src', currentImageUrl).addClass('displayed-image');
-            $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
-            assignedImages.push({ email: email, imageUrl: currentImageUrl });
+            if (!assignedImages.some(item => item.email === email && item.imageUrl === currentImageUrl)) {
+                var $image = $('<img>').attr('src', currentImageUrl).addClass('displayed-image');
+                $imgDisplay.append($image);
+                assignedImages.push({ email: email, imageUrl: currentImageUrl });
+            } else {
+                alert('Image already assigned to this email.');
+            }
         } else {
             alert('No image available. Please find and assign an image first.');
-            return;
         }
     }
+}
+
+
+
 
    // Function to add email to dropdown
 function addToDropdown(email) {
