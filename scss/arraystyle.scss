@@ -29,6 +29,7 @@ align-items: center;
 letter-spacing: 4px;
 background-color: #000;
 color: #f9f9f9;
+
 }
 main{
     justify-content: space-around;
@@ -37,6 +38,7 @@ h1{
     font-weight: 700;   
     text-align: center;
     @include border;
+    @include customBoxShadow;
 }
 h3{
     text-align: center;
@@ -45,6 +47,15 @@ p{
     text-align: center;
 }
 //================================================================Body================================================================//
+.backgroundImage{
+    background-image: url('..\wood-1759566_1280.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    z-index: 10;
+}
+
 .container{
     flex-direction: column;
     display: flex;
@@ -56,6 +67,7 @@ p{
 
 header{
     margin: 20px;
+    align-self: center;
 }
 button{
 position: relative;
@@ -73,6 +85,7 @@ text-align: center;
 line-height: 40px;
 cursor: pointer;
 overflow: hidden;
+@include customBoxShadow;
         &:hover {
             color: #fff;
             background-color: #000;
@@ -89,6 +102,7 @@ overflow: hidden;
 #imageContainer{
     @include border;
     height: 400px;
+    @include customBoxShadow;
     &:hover {
         box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
             }
@@ -98,7 +112,8 @@ overflow: hidden;
     @include border;
     padding:0;
     height: 80%;
-    position: relative;
+    position: relative;  
+    margin-top: 20px;
 }
 .fetched-image {
     width: 100%;
@@ -109,6 +124,7 @@ overflow: hidden;
 
 #emailContainer{
     @include border;
+    @include customBoxShadow;
     &:hover {
         box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
             }
@@ -141,6 +157,7 @@ input, select{
 #emailDisplay{
     @include border;
     align-content:none;
+    @include customBoxShadow;
     
     &:hover {
         box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
@@ -159,6 +176,7 @@ input, select{
 
 #imageDisplayer{
     @include border;
+    @include customBoxShadow;
     &:hover {
         box-shadow: 0 0 10px 5px #222222, 0 0 20px 10px #525252, 0 0 30px 15px #686868;
             }
