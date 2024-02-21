@@ -64,14 +64,12 @@ $(document).ready(function () {
     $('#emailDropdown').change(function () {
         var selectedEmail = $(this).val();
         updateAssignedImagesDisplay(selectedEmail);
-        clearMessage('imageAssignedMessage'); // Clear the message
         clearMessage('emailValidationMessage'); // Clear any email validation message
     });
 
     // Event listener for adding the current image to the imgDisplayer
     $('#btnAddImage').click(function () {
         var selectedEmail = $('#emailDropdown').val();
-        var $imageAssignedMessage = $('#imageAssignedMessage');
         var $emailValidationMessage = $('#emailValidationMessage');
 
         if (selectedEmail !== 'Please select your email') {
@@ -92,7 +90,6 @@ $(document).ready(function () {
     function assignImageToEmail(email) {
         var $imgDisplay = $('#imgDisplay');
         var $imageWindow = $('#imageWindow');
-        var $imageAssignedMessage = $('#imageAssignedMessage');
 
         var currentAltText = $imageWindow.find('img').attr('alt');
 
@@ -139,42 +136,49 @@ $(document).ready(function () {
         // Display the filtered images
         filteredImages.forEach(function (item) {
             var $image = $('<img>').attr('src', item.imageUrl).attr('alt', item.altText).addClass('displayed-image');
-            $imgDisplay.append($('<p>').text('Selected Email: ' + selectedEmail), $image);
+            $imgDisplay.append($image);
         });
-    }
 
-    // Function to add email to dropdown
-    function addToDropdown(email) {
-        var $emailDropdown = $('#emailDropdown');
-        var $validationMessage = $('#validationMessage');
-        var $emailValidationMessage = $('#emailValidationMessage');
+        // Check if the currently displayed image is assigned to the selected email
+        var currentImageAssignedToSelectedEmail = filteredImages.some(function (item) {
+            return item.imageUrl === currentImageUrl;
+        });
 
-        // Check if the email is already in the dropdown
-        if ($emailDropdown.find('option[value="' + email + '"]').length === 0) {
-            var $option = $('<option>').text(email).val(email);
-            $emailDropdown.append($option);
-            $emailDropdown.val(email);
-            $('#emailInput').val('');
-            $validationMessage.text(''); // Clear any previous validation message
-            $emailValidationMessage.text(''); // Clear any previous email validation message
+        if (currentImageAssignedToSelectedEmail) {
+            displayMessageInDiv('Image already assigned to this email.', 'imageAssignedMessage');
         } else {
-            displayMessageInDiv('Email address already selected.', 'emailValidationMessage');
+            clearMessage('imageAssignedMessage');
         }
     }
 
-// Function to clear a message in a specific div
-function clearMessage(divId) {
-    $('#' + divId).text(''); // Clear the specified div
-    console.log('Cleared ' + divId);
-    return divId;  // Return the divId for further use
+// Function to add email to dropdown
+function addToDropdown(email) {
+    var $emailDropdown = $('#emailDropdown');
+    var $validationMessage = $('#validationMessage');
+    var $emailValidationMessage = $('#emailValidationMessage');
+    var $imageAssignedMessage = $('#imageAssignedMessage');
+
+    // Check if the email is already in the dropdown
+    if ($emailDropdown.find('option[value="' + email + '"]').length === 0) {
+        // Clear the "Image already assigned to this email." message when a new email is added
+        $imageAssignedMessage.text('');
+
+        var $option = $('<option>').text(email).val(email);
+        $emailDropdown.append($option);
+        $emailDropdown.val(email);
+        $('#emailInput').val('');
+        $validationMessage.text(''); // Clear any previous validation message
+        $emailValidationMessage.text(''); // Clear any previous email validation message
+    } else {
+        displayMessageInDiv('Email address already selected.', 'emailValidationMessage');
+    }
 }
 
-// Usage example
-var myDivId = clearMessage('someDivId');  // Use the returned divId
 
-// Add this line after the clearMessage call
-console.log('clearMessage called with divId:', myDivId);
-
+    // Function to clear a message in a specific div
+    function clearMessage(divId) {
+        $('#' + divId).text(''); // Clear the specified div
+    }
 
     // Function to display validation messages on the screen
     function displayMessageInDiv(message, divId) {
@@ -184,12 +188,4 @@ console.log('clearMessage called with divId:', myDivId);
 
     // Fetch and display a new image on the load of the page
     fetchAndDisplayImage(apiURL);
-
-    // Function to display an image in the imageWindow
-    function displayImageInWindow(imageUrl) {
-        var $imageWindow = $('#imageWindow');
-        $imageWindow.empty();
-        var $image = $('<img>').attr('src', imageUrl).addClass('fetched-image');
-        $image.appendTo($imageWindow);
-    }
 });

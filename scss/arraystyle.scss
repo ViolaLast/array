@@ -172,6 +172,7 @@ input, select{
 }
 
 #imageDisplayer{
+    display: block !important;
     @include border;
     @include customBoxShadow;
     &:hover {
@@ -181,6 +182,7 @@ input, select{
 .displayed-image {
     border-radius: 40px;
     margin-top: 10px;
+    display: block;
     // padding: 10px;
     width: 100%;
     height: 100%;
