@@ -181,5 +181,13 @@ input, select{
 .displayed-image {
     border-radius: 40px;
     margin-top: 10px;
-    padding: 10px;
+    // padding: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
+
+  .validation-message {
+    color: red;
+    margin-top: 5px;
+}

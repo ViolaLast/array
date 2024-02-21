@@ -33,6 +33,7 @@ $(document).ready(function () {
                 if (data.urls && data.urls.small) {
                     currentImageUrl = data.urls.small;
                     generateImage(currentImageUrl, data.alt_description);
+                    clearMessage('imageAssignedMessage'); // Clear the message
                 } else {
                     console.error('Invalid image data received:', data);
                 }
@@ -47,10 +48,15 @@ $(document).ready(function () {
     // Event listener for adding email to the dropdown
     $('#assignImageBtn').click(function () {
         var email = $('#emailInput').val();
+        var $validationMessage = $('#validationMessage');
+        var $emailValidationMessage = $('#emailValidationMessage');
+
         if (validateEmail(email)) {
             addToDropdown(email);
+            $validationMessage.text(''); // Clear any previous validation message
+            $emailValidationMessage.text(''); // Clear any previous email validation message
         } else {
-            alert('Please enter a valid email address.');
+            displayMessageInDiv('Please enter a valid email address.', 'validationMessage');
         }
     });
 
@@ -58,15 +64,21 @@ $(document).ready(function () {
     $('#emailDropdown').change(function () {
         var selectedEmail = $(this).val();
         updateAssignedImagesDisplay(selectedEmail);
+        clearMessage('imageAssignedMessage'); // Clear the message
+        clearMessage('emailValidationMessage'); // Clear any email validation message
     });
 
     // Event listener for adding the current image to the imgDisplayer
     $('#btnAddImage').click(function () {
         var selectedEmail = $('#emailDropdown').val();
+        var $imageAssignedMessage = $('#imageAssignedMessage');
+        var $emailValidationMessage = $('#emailValidationMessage');
+
         if (selectedEmail !== 'Please select your email') {
             assignImageToEmail(selectedEmail);
+            $emailValidationMessage.text(''); // Clear any previous email validation message
         } else {
-            alert('Please select an email first.');
+            displayMessageInDiv('Please select an email first.', 'emailValidationMessage');
         }
     });
 
@@ -80,6 +92,7 @@ $(document).ready(function () {
     function assignImageToEmail(email) {
         var $imgDisplay = $('#imgDisplay');
         var $imageWindow = $('#imageWindow');
+        var $imageAssignedMessage = $('#imageAssignedMessage');
 
         var currentAltText = $imageWindow.find('img').attr('alt');
 
@@ -92,10 +105,10 @@ $(document).ready(function () {
                     $imgDisplay.append($('<p>').text('Selected Email: ' + email), $image);
                     assignedImages.push({ email: email, imageUrl: currentImageUrl });
                 } else {
-                    alert('No image available. Please find and assign an image first.');
+                    displayMessageInDiv('No image available. Please find and assign an image first.', 'imageAssignedMessage');
                 }
             } else {
-                alert('Image already assigned to this email.');
+                displayMessageInDiv('Image already assigned to this email.', 'imageAssignedMessage');
             }
         } else {
             // If it's the same email, just add the image without displaying the email text
@@ -105,10 +118,10 @@ $(document).ready(function () {
                     $imgDisplay.append($image);
                     assignedImages.push({ email: email, imageUrl: currentImageUrl });
                 } else {
-                    alert('Image already assigned to this email.');
+                    displayMessageInDiv('Image already assigned to this email.', 'imageAssignedMessage');
                 }
             } else {
-                alert('No image available. Please find and assign an image first.');
+                displayMessageInDiv('No image available. Please find and assign an image first.', 'imageAssignedMessage');
             }
         }
     }
@@ -133,6 +146,8 @@ $(document).ready(function () {
     // Function to add email to dropdown
     function addToDropdown(email) {
         var $emailDropdown = $('#emailDropdown');
+        var $validationMessage = $('#validationMessage');
+        var $emailValidationMessage = $('#emailValidationMessage');
 
         // Check if the email is already in the dropdown
         if ($emailDropdown.find('option[value="' + email + '"]').length === 0) {
@@ -140,9 +155,31 @@ $(document).ready(function () {
             $emailDropdown.append($option);
             $emailDropdown.val(email);
             $('#emailInput').val('');
+            $validationMessage.text(''); // Clear any previous validation message
+            $emailValidationMessage.text(''); // Clear any previous email validation message
         } else {
-            alert('Email address already selected.');
+            displayMessageInDiv('Email address already selected.', 'emailValidationMessage');
         }
+    }
+
+// Function to clear a message in a specific div
+function clearMessage(divId) {
+    $('#' + divId).text(''); // Clear the specified div
+    console.log('Cleared ' + divId);
+    return divId;  // Return the divId for further use
+}
+
+// Usage example
+var myDivId = clearMessage('someDivId');  // Use the returned divId
+
+// Add this line after the clearMessage call
+console.log('clearMessage called with divId:', myDivId);
+
+
+    // Function to display validation messages on the screen
+    function displayMessageInDiv(message, divId) {
+        var $messageDiv = $('#' + divId);
+        $messageDiv.text(message);
     }
 
     // Fetch and display a new image on the load of the page
